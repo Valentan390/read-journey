@@ -1,5 +1,6 @@
 import { FieldErrors } from "react-hook-form";
 import { FormData, InputAuth, Name } from "./interfaseData";
+import { Variants } from "framer-motion";
 
 export const userNavData = [
   {
@@ -43,7 +44,7 @@ export const getIconName = (
   return passwordVisible ? "icon-eye" : "icon-eye-off";
 };
 
-export const getIconStrore = (
+export const getIconStroke = (
   errors: FieldErrors<FormData>,
   isValid: boolean
 ) => {
@@ -53,4 +54,21 @@ export const getIconStrore = (
     return "green";
   }
   return "white";
+};
+
+export const containerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 0,
+      duration: 0.8,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: { delay: 0, duration: 0.8 },
+  },
 };

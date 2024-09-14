@@ -2,7 +2,6 @@ import { FC } from "react";
 import Logo from "../Logo/Logo";
 import UserNav from "../UserNav/UserNav";
 import UserBar from "../UserBar/UserBar";
-import LogOutBtn from "../Buttons/LogOutBtn/LogOutBtn";
 import {
   Header_div,
   Header_header,
@@ -10,6 +9,8 @@ import {
   HeaderSection,
 } from "./Header.styled";
 import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
+import BurgerMenuBtn from "../Buttons/BurgerMenuBtn/BurgerMenuBtn";
+import LogOutBtn from "../Buttons/LogOutBtn/LogOutBtn";
 
 const Header: FC = () => {
   const { isMobile } = useMediaQueryResponsive();
@@ -21,7 +22,7 @@ const Header: FC = () => {
           {!isMobile && <UserNav />}
           <Header_div>
             <UserBar />
-            <LogOutBtn />
+            {isMobile ? <BurgerMenuBtn /> : <LogOutBtn />}
           </Header_div>
         </Header_header>
       </HeaderContainer>

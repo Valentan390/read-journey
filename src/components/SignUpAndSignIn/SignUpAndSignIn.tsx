@@ -41,7 +41,7 @@ const SignUpAndSignIn: FC = () => {
 
   return (
     <SignUpAndSignInWrapper>
-      <Logo isAuth={isTablet ? true : false} />
+      <Logo isAuth={isTablet} />
       <SignUpAndSignIn_Title>
         Expand your mind, reading{" "}
         <SignUpAndSignIn_Span>a book</SignUpAndSignIn_Span>

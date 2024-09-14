@@ -1,12 +1,11 @@
 import { FC, useState } from "react";
 import {
   getIconName,
-  getIconStrore,
+  getIconStroke,
   getInputType,
   InputAuthProps,
 } from "../../helpers";
 import Icon from "../Icon/Icon";
-
 import {
   InputAuth_Button_Eye,
   InputAuth_Input,
@@ -51,7 +50,7 @@ const InputAuth: FC<InputAuthProps> = ({
             iconName={getIconName(errors, isValid, passwordVisible)}
             width={18}
             height={18}
-            stroke={getIconStrore(errors, isValid)}
+            stroke={getIconStroke(errors, isValid)}
           />
         </InputAuth_Button_Eye>
       )}

@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const LogOutButtonIcon = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const LogOutButton = styled.button`
   display: flex;
   justify-content: center;

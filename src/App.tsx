@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Layout from "./components/Layout/Layout";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
@@ -9,6 +11,8 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import MyLibraryPage from "./pages/MyLibraryPage/MyLibraryPage";
 import ReadingPage from "./pages/ReadingPage/ReadingPage";
 import useAuthUser from "./hooks/useAuthUser";
+import ModalContainer from "./components/ModalContainer/ModalContainer";
+import ModalContent from "./components/ModalContent/ModalContent";
 
 const App: FC = () => {
   const { isLoggedin } = useAuthUser();
@@ -68,6 +72,12 @@ const App: FC = () => {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+
+      <ModalContainer>
+        <ModalContent />
+      </ModalContainer>
+
+      <ToastContainer position="top-center" autoClose={5000} />
     </>
   );
 };
