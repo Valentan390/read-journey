@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { Tokens, User, UserAuthState } from "../../helpers";
+import { User, UserAuthState } from "../../helpers";
 
 export const handlePending = (state: UserAuthState) => {
   state.error = "";
@@ -28,9 +28,11 @@ export const handleRejected = (
 
 export const handleRefreshTokenFulfilled = (
   state: UserAuthState,
-  action: PayloadAction<Tokens>
+  action: PayloadAction<User>
 ) => {
+  state.isLoggedIn = true;
   state.isLoadingUser = false;
+  state.user = action.payload;
   state.token = action.payload.token;
   state.refreshToken = action.payload.refreshToken;
 };

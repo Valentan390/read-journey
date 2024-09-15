@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,9 +13,16 @@ import ReadingPage from "./pages/ReadingPage/ReadingPage";
 import useAuthUser from "./hooks/useAuthUser";
 import ModalContainer from "./components/ModalContainer/ModalContainer";
 import ModalContent from "./components/ModalContent/ModalContent";
+import { useAppDispatch } from "./hooks/useReduxHooks";
+import { userRefreshTokenThunk } from "./redux/userAuth/operationsUserAuth";
 
 const App: FC = () => {
   const { isLoggedin } = useAuthUser();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(userRefreshTokenThunk());
+  }, [dispatch]);
 
   return (
     <>

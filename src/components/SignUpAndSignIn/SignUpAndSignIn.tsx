@@ -11,7 +11,7 @@ import {
 } from "./SignUpAndSignIn.styled";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   FormData,
   inputSignIn,
@@ -21,6 +21,12 @@ import {
 } from "../../helpers";
 import InputAuth from "../InputAuth/InputAuth";
 import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
+import {
+  userSignInThunk,
+  userSignUpThunk,
+} from "../../redux/userAuth/operationsUserAuth";
+import { toast } from "react-toastify";
 
 const SignUpAndSignIn: FC = () => {
   const { pathname } = useLocation();
@@ -28,16 +34,31 @@ const SignUpAndSignIn: FC = () => {
   const isSignUp = pathname === "/register";
   const schema = isSignUp ? schemaSignUp : schemaSignIn;
   const inputAuthRender = isSignUp ? inputSignUp : inputSignIn;
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  const onSubmit = handleSubmit((data) => console.log(data));
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      const action = isSignUp ? userSignUpThunk : userSignInThunk;
+      await dispatch(action(data)).unwrap();
+      navigate("/recommended");
+      reset();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(`${error.message}`);
+      }
+    }
+  });
 
   return (
     <SignUpAndSignInWrapper>

@@ -1,13 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import {
-  FormDataSignIn,
-  FormDataSignUp,
-  Tokens,
-  User,
-  UserSignOut,
-} from "../../helpers";
+import { FormData, Tokens, User, UserSignOut } from "../../helpers";
 import { RootState } from "../store";
 
 axios.defaults.baseURL = "https://readjourney.b.goit.study/api";
@@ -22,7 +16,7 @@ export const clearAuthHeader: () => void = () => {
 
 export const userSignUpThunk = createAsyncThunk<
   User,
-  FormDataSignUp,
+  FormData,
   { rejectValue: string }
 >("users/signup", async (credentials, thunkAPI) => {
   try {
@@ -72,7 +66,7 @@ export const userSignUpThunk = createAsyncThunk<
 
 export const userSignInThunk = createAsyncThunk<
   User,
-  FormDataSignIn,
+  FormData,
   { rejectValue: string }
 >("users/signin", async (credentials, thunkAPI) => {
   try {
@@ -172,7 +166,7 @@ export const userCurrentThunk = createAsyncThunk<
 });
 
 export const userRefreshTokenThunk = createAsyncThunk<
-  Tokens,
+  User,
   void,
   { rejectValue: string; state: RootState }
 >("users/refresh", async (_, thunkAPI) => {
@@ -182,9 +176,10 @@ export const userRefreshTokenThunk = createAsyncThunk<
       return thunkAPI.rejectWithValue("Unable to fetch user");
     }
     setAuthHeader(refreshToken);
-    const { data } = await axios.get<Tokens>("users/current/refersh");
+    const { data } = await axios.get<Tokens>("users/current/refresh");
     setAuthHeader(data.token);
-    return data;
+    const res = await axios.get<User>("users/current");
+    return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
