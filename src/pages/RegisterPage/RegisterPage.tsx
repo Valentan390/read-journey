@@ -1,15 +1,17 @@
 import { FC } from "react";
 import SignUpAndSignIn from "../../components/SignUpAndSignIn/SignUpAndSignIn";
+import Iphone15 from "../../components/Iphone15/Iphone15";
+
+import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
+import MainComponent from "../../components/MainComponent/MainComponent";
 
 const RegisterPage: FC = () => {
+  const { isTablet } = useMediaQueryResponsive();
   return (
-    <main>
-      <section>
-        <div className="container">
-          <SignUpAndSignIn />
-        </div>
-      </section>
-    </main>
+    <MainComponent>
+      <SignUpAndSignIn />
+      {!isTablet && <Iphone15 />}
+    </MainComponent>
   );
 };
 

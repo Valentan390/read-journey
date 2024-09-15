@@ -13,6 +13,7 @@ import {
   InputAuth_P,
   InputAuth_Span,
 } from "./InputAuth.styled";
+import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
 
 const InputAuth: FC<InputAuthProps> = ({
   name,
@@ -22,6 +23,7 @@ const InputAuth: FC<InputAuthProps> = ({
   isValid,
 }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { isMobile } = useMediaQueryResponsive();
 
   return (
     <InputAuth_Label>
@@ -48,8 +50,8 @@ const InputAuth: FC<InputAuthProps> = ({
         >
           <Icon
             iconName={getIconName(errors, isValid, passwordVisible)}
-            width={18}
-            height={18}
+            width={isMobile ? 18 : 20}
+            height={isMobile ? 18 : 20}
             stroke={getIconStroke(errors, isValid)}
           />
         </InputAuth_Button_Eye>

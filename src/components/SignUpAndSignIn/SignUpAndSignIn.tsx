@@ -58,7 +58,7 @@ const SignUpAndSignIn: FC = () => {
           />
         ))}
 
-        <SignUpAndSignInContainer>
+        <SignUpAndSignInContainer $marginTop={isSignUp}>
           <SignUpAndSignIn_Button type="submit">
             {isSignUp ? "Registration" : "Log in"}
           </SignUpAndSignIn_Button>

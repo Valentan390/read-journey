@@ -63,6 +63,29 @@ export const InputAuth_Input = styled.input<{
     -webkit-text-fill-color: ${({ theme }) => theme.colors.white} !important;
     transition: background-color 5000s ease-in-out 0s;
   }
+
+  @media screen and (min-width: 768px) {
+    padding: 16px 48px 16px
+      ${({ $paddingLeft }) => {
+        switch ($paddingLeft) {
+          case "Name:":
+            return "65px";
+          case "Mail:":
+            return "53px";
+          case "Password:":
+            return "86px";
+          default:
+            return "90px";
+        }
+      }};
+
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.28px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const InputAuth_Span = styled.span`
@@ -79,6 +102,15 @@ export const InputAuth_Span = styled.span`
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: -0.24px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.28px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const InputAuth_P = styled.p<{ $error: boolean }>`
@@ -92,6 +124,14 @@ export const InputAuth_P = styled.p<{ $error: boolean }>`
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.2px;
+
+  @media screen and (min-width: 768px) {
+    bottom: -16px;
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const InputAuth_Button_Eye = styled.button`
@@ -103,4 +143,9 @@ export const InputAuth_Button_Eye = styled.button`
   justify-content: centr;
   align-items: center;
   width: max-content;
+
+  @media screen and (min-width: 768px) {
+    right: 18px;
+    top: 15px;
+  }
 `;

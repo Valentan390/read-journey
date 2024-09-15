@@ -7,6 +7,15 @@ export const SignUpAndSignInWrapper = styled.div`
   border-radius: 30px;
   background: ${({ theme }) => theme.colors.charcoal};
   padding: 20px 20px 40px 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 168px 214px 64px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: calc((100% - 20px) / 2);
+    padding: 40px 64px;
+  }
 `;
 
 export const SignUpAndSignIn_Title = styled.h2`
@@ -16,6 +25,17 @@ export const SignUpAndSignIn_Title = styled.h2`
   line-height: 1;
   letter-spacing: 0.64px;
   margin: 40px 0 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 64px;
+    line-height: 0.94;
+    letter-spacing: 1.28px;
+    margin: 157px 0 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin: 107px 0 40px;
+  }
 `;
 
 export const SignUpAndSignIn_Span = styled.span`
@@ -26,6 +46,15 @@ export const SignUpAndSignIn_Span = styled.span`
   font-weight: 700;
   line-height: 32px;
   letter-spacing: 0.64px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 64px;
+    line-height: 60px;
+    letter-spacing: 1.28px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const SignUpAndSignIn_Form = styled.form`
@@ -35,21 +64,30 @@ export const SignUpAndSignIn_Form = styled.form`
   justify-content: start;
   align-items: center;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
-// export const SignUpAndSignIn = styled.``;
-// export const SignUpAndSignIn = styled.``;
-// export const SignUpAndSignIn = styled.``;
-// export const SignUpAndSignIn = styled.``;
-// export const SignUpAndSignIn = styled.``;
-
-export const SignUpAndSignInContainer = styled.div`
+export const SignUpAndSignInContainer = styled.div<{ $marginTop: boolean }>`
   display: flex;
   gap: 8px;
   justify-content: start;
   align-items: center;
-  margin: 12px 0 0;
+  margin: ${({ $marginTop }) => ($marginTop ? "12px" : "77px")} 0 0;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+    margin: ${({ $marginTop }) => ($marginTop ? "82px" : "157px")} 0 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const SignUpAndSignIn_Button = styled.button`
@@ -58,9 +96,9 @@ export const SignUpAndSignIn_Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 30px;
+  border: 1px solid;
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.charcoal};
-  font-family: Gilroy;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -70,6 +108,20 @@ export const SignUpAndSignIn_Button = styled.button`
 
   &:hover,
   &:focus {
+    color: ${({ theme }) => theme.colors.white};
+    border: 1px solid ${({ theme }) => theme.colors.transparentWhite20};
+    background: ${({ theme }) => theme.colors.black};
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 16px;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0.4px;
+    width: calc((100% - 20px) / 2);
+  }
+
+  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -86,8 +138,16 @@ export const SignUpAndSignIn_Link = styled(Link)`
 
   &:hover,
   &:focus {
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.28px;
+    width: calc((100% - 20px) / 2);
+  }
+
+  @media screen and (min-width: 1280px) {
   }
 `;
-
-// export const SignUpAndSignIn = styled.``;
-// export const SignUpAndSignIn = styled.``;
