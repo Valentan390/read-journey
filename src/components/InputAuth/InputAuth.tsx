@@ -13,7 +13,7 @@ import {
   InputAuth_P,
   InputAuth_Span,
 } from "./InputAuth.styled";
-import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
+import { useMediaQueryResponsive } from "../../hooks";
 
 const InputAuth: FC<InputAuthProps> = ({
   name,

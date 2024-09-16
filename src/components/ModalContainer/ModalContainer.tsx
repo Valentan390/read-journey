@@ -4,29 +4,27 @@ import {
   ReactNode,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
 } from "react";
-import useHandlerModal from "../../hooks/useHandlerModal ";
+import { useHandlerModal } from "../../hooks";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 import { ModalContainerBackdrop } from "./ModalContainer.styled";
 import { containerVariants } from "../../helpers";
 
 const ModalContainer: FC<{ children: ReactNode }> = ({ children }) => {
-  const { isModalOpen, handlerModalClose } = useHandlerModal();
-  const element = useMemo(() => document.createElement("div"), []);
-  const modalRootElementRef = useRef<HTMLElement>(
+  const { isModal, handlerModalClose } = useHandlerModal();
+  const modalRootElementRef = useRef<HTMLElement | null>(
     document.getElementById("ModalRoot")
   );
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isModalOpen) {
+      if (event.key === "Escape" && isModal) {
         handlerModalClose();
       }
     },
-    [isModalOpen, handlerModalClose]
+    [isModal, handlerModalClose]
   );
 
   const handleBackdropClick: MouseEventHandler<HTMLDivElement> = useCallback(
@@ -39,29 +37,23 @@ const ModalContainer: FC<{ children: ReactNode }> = ({ children }) => {
   );
 
   useEffect(() => {
-    const currentModalRootElement = modalRootElementRef.current;
-    if (!currentModalRootElement) return;
-
-    if (isModalOpen) {
+    if (isModal) {
       document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", handleKeyDown);
     } else {
       document.body.style.overflow = "auto";
     }
 
-    currentModalRootElement.appendChild(element);
-
-    document.addEventListener("keydown", handleKeyDown);
-
     return () => {
-      if (!currentModalRootElement) return;
-      currentModalRootElement.removeChild(element);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [element, handleKeyDown, isModalOpen]);
+  }, [isModal, handleKeyDown]);
+
+  if (!modalRootElementRef.current) return null;
 
   return createPortal(
     <AnimatePresence>
-      {isModalOpen && (
+      {isModal && (
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -74,7 +66,7 @@ const ModalContainer: FC<{ children: ReactNode }> = ({ children }) => {
         </motion.div>
       )}
     </AnimatePresence>,
-    element
+    modalRootElementRef.current
   );
 };
 

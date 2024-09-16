@@ -8,7 +8,7 @@ import {
   HeaderContainer,
   HeaderSection,
 } from "./Header.styled";
-import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
+import { useMediaQueryResponsive } from "../../hooks";
 import BurgerMenuBtn from "../Buttons/BurgerMenuBtn/BurgerMenuBtn";
 import LogOutBtn from "../Buttons/LogOutBtn/LogOutBtn";
 

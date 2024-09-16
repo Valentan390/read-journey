@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { useAppSelector } from "../../hooks/useReduxHooks";
 import { selectUser } from "../../redux/userAuth/userAuthSelectors";
-import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
 import { UserBar_I, UserBar_p, UserBarWrapper } from "./UserBar.styled";
+import { useAppSelector, useMediaQueryResponsive } from "../../hooks";
 
 const UserBar: FC = () => {
   const user = useAppSelector(selectUser);

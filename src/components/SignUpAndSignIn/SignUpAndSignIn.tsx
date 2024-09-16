@@ -20,8 +20,7 @@ import {
   schemaSignUp,
 } from "../../helpers";
 import InputAuth from "../InputAuth/InputAuth";
-import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
-import { useAppDispatch } from "../../hooks/useReduxHooks";
+import { useAppDispatch, useMediaQueryResponsive } from "../../hooks";
 import {
   userSignInThunk,
   userSignUpThunk,

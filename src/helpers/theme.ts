@@ -13,6 +13,7 @@ export const theme = {
     transparentLightGray: "rgba(227, 227, 227, 0.5)",
     transparentWhite: "rgba(249, 249, 249, 0.1)",
     transparentWhite20: "rgba(249, 249, 249, 0.2)",
+    transparentBlack60: "rgba(20, 20, 20, 0.60)",
   },
 
   transition: "250ms cubic-bezier(0.4, 0, 0.2, 1)",

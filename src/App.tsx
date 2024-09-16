@@ -10,15 +10,17 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import MyLibraryPage from "./pages/MyLibraryPage/MyLibraryPage";
 import ReadingPage from "./pages/ReadingPage/ReadingPage";
-import useAuthUser from "./hooks/useAuthUser";
+import { useAuthUser, useMediaQueryResponsive } from "./hooks";
 import ModalContainer from "./components/ModalContainer/ModalContainer";
 import ModalContent from "./components/ModalContent/ModalContent";
 import { useAppDispatch } from "./hooks/useReduxHooks";
 import { userRefreshTokenThunk } from "./redux/userAuth/operationsUserAuth";
+import BurgerMenu from "./components/BurgerMenu/BurgerMenu";
 
 const App: FC = () => {
   const { isLoggedin } = useAuthUser();
   const dispatch = useAppDispatch();
+  const { isMobile } = useMediaQueryResponsive();
 
   useEffect(() => {
     dispatch(userRefreshTokenThunk());
@@ -79,6 +81,8 @@ const App: FC = () => {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+
+      {isMobile && <BurgerMenu />}
 
       <ModalContainer>
         <ModalContent />

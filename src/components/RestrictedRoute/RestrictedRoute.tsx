@@ -1,6 +1,6 @@
 import { ComponentType, FC } from "react";
 import { Navigate } from "react-router-dom";
-import useAuthUser from "../../hooks/useAuthUser";
+import { useAuthUser } from "../../hooks";
 
 interface RestrictedRouteProps {
   component: ComponentType;

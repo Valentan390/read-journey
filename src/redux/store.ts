@@ -13,6 +13,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { burgerMenuReducer } from "./burgerMenu/burgerMenuSlice";
 
 const userAuthPersistConfig = {
   key: "userAuth",
@@ -29,6 +30,7 @@ export const store = configureStore({
   reducer: {
     userAuth: userAuthPersistedReducer,
     modal: modalReducer,
+    burgerMenu: burgerMenuReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

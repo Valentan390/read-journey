@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { LogOutButton } from "./LogOutBtn.styled";
-import { useAppDispatch } from "../../../hooks/useReduxHooks";
+import { useAppDispatch } from "../../../hooks";
 import { userSignOutThunk } from "../../../redux/userAuth/operationsUserAuth";
 
 const LogOutBtn: FC = () => {

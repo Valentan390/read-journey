@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Icon from "../Icon/Icon";
 import { Logo_Link } from "./Logo.styled";
-import useMediaQueryResponsive from "../../hooks/useMediaQueryResponsive";
+import { useMediaQueryResponsive } from "../../hooks";
 
 const Logo: FC<{ isAuth?: boolean }> = ({ isAuth }) => {
   const { isDescktop } = useMediaQueryResponsive();

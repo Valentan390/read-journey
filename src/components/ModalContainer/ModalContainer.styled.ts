@@ -6,9 +6,10 @@ export const ModalContainerBackdrop = styled.div`
   top: 0;
   width: 100vw;
   height: 100vh;
-  /* overflow: hidden; */
+  // overflow: hidden;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `;
