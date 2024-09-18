@@ -55,3 +55,28 @@ export interface InputAuth {
   name: Name;
   span: Span;
 }
+
+export interface Books {
+  _id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  totalPages: number;
+  recommend: boolean;
+}
+
+export interface BooksRecommendet {
+  results: Books[];
+  totalPages: number;
+  page: number;
+  perPage: number;
+}
+
+export interface BooksState {
+  books: Books[];
+  totalPages: number;
+  page: number;
+  perPage: number;
+  isLoadingBooks: boolean;
+  error: string | undefined;
+}

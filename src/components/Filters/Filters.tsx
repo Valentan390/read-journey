@@ -9,23 +9,23 @@ import {
   Filters_Wrapper,
 } from "./Filters.styled";
 import { useForm } from "react-hook-form";
+import { useAppDispatch } from "../../hooks";
+import { setFilter } from "../../redux/filter/filterSlise";
 
-interface FiltersFormData {
+export interface FiltersFormData {
   title: string;
   author: string;
 }
 
 const Filters: FC = () => {
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, watch } = useForm<FiltersFormData>();
   const title = watch("title");
   const author = watch("author");
   const isButtonDisabled = !title && !author;
 
   const onSubmit = handleSubmit((data) => {
-    const filteredData = Object.fromEntries(
-      Object.entries(data).filter((entry) => entry[1].trim() !== "")
-    );
-    console.log(filteredData);
+    dispatch(setFilter(data));
   });
 
   const filtersInputRender = (
