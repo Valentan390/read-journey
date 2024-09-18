@@ -96,7 +96,7 @@ export const SignUpAndSignIn_Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-  border: 1px solid;
+  border: 1px solid transparent;
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.charcoal};
   font-size: 14px;

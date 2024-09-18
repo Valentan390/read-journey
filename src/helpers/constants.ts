@@ -72,3 +72,16 @@ export const containerVariants: Variants = {
     transition: { delay: 0, duration: 0.8 },
   },
 };
+
+export const descriptions = [
+  {
+    number: "1",
+    text: "Create a personal library: ",
+    span: "add the books you intend to read <br /> to it.",
+  },
+  {
+    number: "2",
+    text: "Create your first workout: ",
+    span: "define a goal, choose a period, start training.",
+  },
+];
