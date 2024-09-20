@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const RecommendedBooks_Wrapper = styled.div`
   width: 100%;
-  height: 382px;
   border-radius: 30px;
   background: ${({ theme }) => theme.colors.charcoal};
   padding: 40px 20px;

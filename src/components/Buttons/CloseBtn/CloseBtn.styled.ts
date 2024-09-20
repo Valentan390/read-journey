@@ -18,13 +18,13 @@ const rotateBackAnimation = keyframes`
   }
 `;
 
-export const CloseBtn_Button = styled.button`
+export const CloseBtn_Button = styled.button<{ $modal?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 34px;
-  right: 40px;
+  top: ${({ $modal }) => ($modal ? "16px" : "34px")};
+  right: ${({ $modal }) => ($modal ? "16px" : "40px")};
   //   transition: transform 0.3s ease-in-out;
   transform-origin: center;
 

@@ -56,7 +56,7 @@ export interface InputAuth {
   span: Span;
 }
 
-export interface Books {
+export interface Book {
   _id: string;
   title: string;
   author: string;
@@ -66,17 +66,19 @@ export interface Books {
 }
 
 export interface BooksRecommendet {
-  results: Books[];
+  results: Book[];
   totalPages: number;
   page: number;
   perPage: number;
 }
 
 export interface BooksState {
-  books: Books[];
+  books: Book[];
+  book: Book;
   totalPages: number;
   page: number;
   perPage: number;
+  idBook: string;
   isLoadingBooks: boolean;
   error: string | undefined;
 }

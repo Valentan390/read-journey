@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { useHandlerModal } from "../../hooks";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import AboutBookModal from "../Modal/AboutBookModal/AboutBookModal";
 
 const ModalContent: FC = () => {
   const { modalName } = useHandlerModal();
 
   switch (modalName) {
-    case "BurgerMenuModal":
-      return <BurgerMenu />;
+    case "AboutBook":
+      return <AboutBookModal />;
     default:
       return null;
   }
