@@ -4,9 +4,9 @@ import { toast } from "react-toastify";
 import { Book, BooksRecommendet } from "../../helpers";
 
 export interface RecommendedParams {
-  title: string | null;
-  author: string | null;
-  page: number;
+  title?: string | null;
+  author?: string | null;
+  page?: number;
   limit: number | null;
 }
 

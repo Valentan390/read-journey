@@ -141,6 +141,14 @@ export const Filters_Input = styled.input<{ $paddingLeft: string }>`
   }
 `;
 
+export const Filters_Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 22px 0 0;
+`;
+
 export const Filters_Button = styled.button`
   display: flex;
   padding: 10px 20px;
@@ -149,7 +157,6 @@ export const Filters_Button = styled.button`
   gap: 10px;
   border-radius: 30px;
   border: 1px solid ${({ theme }) => theme.colors.transparentWhite20};
-  margin: 22px 0 0;
 
   color: ${({ theme }) => theme.colors.white};
   font-size: 14px;

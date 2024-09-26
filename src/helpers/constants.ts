@@ -1,5 +1,10 @@
 import { FieldErrors } from "react-hook-form";
-import { FormData, InputAuth, Name } from "./interfaseData";
+import {
+  FormData,
+  InputAddBooksRender,
+  InputAuth,
+  Name,
+} from "./interfaseData";
 import { Variants } from "framer-motion";
 
 export const userNavData = [
@@ -84,4 +89,10 @@ export const descriptions = [
     text: "Create your first workout: ",
     span: "define a goal, choose a period, start training.",
   },
+];
+
+export const inputAddBooksRender: InputAddBooksRender[] = [
+  { name: "title", span: "Book title:" },
+  { name: "author", span: "The author:" },
+  { name: "totalPages", span: "Number of pages:" },
 ];

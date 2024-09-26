@@ -82,3 +82,21 @@ export interface BooksState {
   isLoadingBooks: boolean;
   error: string | undefined;
 }
+
+export type NameInputAddBooks = "title" | "author" | "totalPages";
+
+export type SpanInputAddBooks =
+  | "Book title:"
+  | "The author:"
+  | "Number of pages:";
+
+export interface InputAddBooksRender {
+  name: NameInputAddBooks;
+  span: SpanInputAddBooks;
+}
+
+export interface FormDataAddBooks {
+  title: string;
+  author: string;
+  totalPages: number;
+}

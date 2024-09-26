@@ -10,7 +10,7 @@ export const Dashboard_Wrapper = styled.div`
   flex-shrink: 0;
   border-radius: 30px;
   background: ${({ theme }) => theme.colors.charcoal};
-  padding: 40px 20px 20px;
+  padding: 20px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;

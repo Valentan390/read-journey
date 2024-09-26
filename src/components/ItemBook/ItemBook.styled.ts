@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-export const ItemBook_Li = styled.li`
-  width: calc((100% - 21px) / 2);
+export const ItemBook_Li = styled.li<{ $isRecommended: boolean }>`
+  width: ${({ $isRecommended }) =>
+    $isRecommended ? "calc((100% - 21px) / 2)" : "calc((100% - 40px) / 3)"};
   height: 100%;
 
   &:hover,
@@ -10,17 +11,22 @@ export const ItemBook_Li = styled.li`
   }
 
   @media screen and (min-width: 768px) {
-    width: calc((100% - 75px) / 4);
+    width: ${({ $isRecommended }) =>
+      $isRecommended ? "calc((100% - 75px) / 4)" : "calc((100% - 40px) / 3)"};
   }
 
   @media screen and (min-width: 1280px) {
-    width: calc((100% - 80px) / 5);
+    width: ${({ $isRecommended }) =>
+      $isRecommended ? "calc((100% - 80px) / 5)" : "calc((100% - 40px) / 3)"};
   }
 `;
 
-export const ItemBook_Div = styled.div<{ $url: string }>`
+export const ItemBook_Div = styled.div<{
+  $url: string;
+  $isRecommended: boolean;
+}>`
   width: 100%;
-  height: 208px;
+  height: ${({ $isRecommended }) => ($isRecommended ? "208px" : "107px")};
   border-radius: 8px;
   background: url(${({ $url }) => $url});
   background-repeat: no-repeat;
@@ -35,9 +41,8 @@ export const ItemBook_Div = styled.div<{ $url: string }>`
   }
 `;
 
-export const ItemBook_H3 = styled.h3`
+export const ItemBook_H3 = styled.h3<{ $isRecommended: boolean }>`
   display: -webkit-box;
-  //   width: 137px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 
@@ -45,7 +50,7 @@ export const ItemBook_H3 = styled.h3`
   text-overflow: ellipsis;
 
   color: ${({ theme }) => theme.colors.white};
-  font-size: 14px;
+  font-size: ${({ $isRecommended }) => ($isRecommended ? "14px" : "10px")};
   font-style: normal;
   font-weight: 700;
   line-height: 1.28;

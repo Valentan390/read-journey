@@ -1,6 +1,7 @@
 import { FC } from "react";
 import {
   Filters_Button,
+  Filters_Container,
   Filters_Form,
   Filters_Input,
   Filters_Label,
@@ -10,7 +11,7 @@ import {
 } from "./Filters.styled";
 import { useForm } from "react-hook-form";
 import { useAppDispatch } from "../../hooks";
-import { setFilter } from "../../redux/filter/filterSlise";
+import { setFilter, setResetFilter } from "../../redux/filter/filterSlise";
 
 export interface FiltersFormData {
   title: string;
@@ -19,7 +20,7 @@ export interface FiltersFormData {
 
 const Filters: FC = () => {
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, watch } = useForm<FiltersFormData>();
+  const { register, handleSubmit, watch, reset } = useForm<FiltersFormData>();
   const title = watch("title");
   const author = watch("author");
   const isButtonDisabled = !title && !author;
@@ -45,15 +46,29 @@ const Filters: FC = () => {
     );
   };
 
+  const handlerResetFilter = () => {
+    dispatch(setResetFilter());
+    reset();
+  };
+
   return (
     <Filters_Wrapper>
       <Filters_P>Filters:</Filters_P>
       <Filters_Form onSubmit={onSubmit}>
         {filtersInputRender("Book title:", "title")}
         {filtersInputRender("The author:", "author")}
-        <Filters_Button type="submit" disabled={isButtonDisabled}>
-          To apply
-        </Filters_Button>
+        <Filters_Container>
+          <Filters_Button type="submit" disabled={isButtonDisabled}>
+            To apply
+          </Filters_Button>
+          <Filters_Button
+            type="button"
+            disabled={isButtonDisabled}
+            onClick={handlerResetFilter}
+          >
+            Reset
+          </Filters_Button>
+        </Filters_Container>
       </Filters_Form>
     </Filters_Wrapper>
   );

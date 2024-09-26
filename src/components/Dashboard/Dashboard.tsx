@@ -5,6 +5,8 @@ import DescriptionFunctionality from "../DescriptionFunctionality/DescriptionFun
 import Quote from "../Quote/Quote";
 import { useMediaQueryResponsive } from "../../hooks";
 import { useLocation } from "react-router-dom";
+import AddBook from "../AddBook/AddBook";
+import RecommendedBooks from "../RecommendedBooks/RecommendedBooks";
 
 const Dashboard: FC = () => {
   const { isDescktop } = useMediaQueryResponsive();
@@ -12,8 +14,8 @@ const Dashboard: FC = () => {
   const isRecommended = pathname === "/recommended";
   return (
     <Dashboard_Wrapper>
-      {isRecommended ? <Filters /> : null}
-      {isRecommended ? <DescriptionFunctionality /> : null}
+      {isRecommended ? <Filters /> : <AddBook />}
+      {isRecommended ? <DescriptionFunctionality /> : <RecommendedBooks />}
       {isRecommended && isDescktop ? <Quote /> : null}
     </Dashboard_Wrapper>
   );

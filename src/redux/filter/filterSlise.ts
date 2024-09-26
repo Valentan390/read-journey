@@ -20,8 +20,12 @@ export const filterSlice = createSlice({
       state.author = author.trim() === "" ? null : author;
       state.title = title.trim() === "" ? null : title;
     },
+    setResetFilter: (state) => {
+      state.author = null;
+      state.title = null;
+    },
   },
 });
 
-export const { setFilter } = filterSlice.actions;
+export const { setFilter, setResetFilter } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
