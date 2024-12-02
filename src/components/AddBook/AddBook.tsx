@@ -26,7 +26,6 @@ const AddBook: FC = () => {
   });
 
   const onSubmit = handleSubmit((data) => console.log(data));
-  console.log(isValid);
 
   return (
     <AddBook_Wrapper>

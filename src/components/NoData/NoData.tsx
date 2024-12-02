@@ -23,7 +23,7 @@ const NoData: FC = () => {
         ) : (
           <>
             To start training, add <NoData_Span>some of your books</NoData_Span>{" "}
-            or from the recommended ones.
+            or from the recommended ones
           </>
         )}
       </NoData_P>

@@ -5,16 +5,18 @@ import BookTab1x from "../../images/tablet/Book-Tab-@1x.webp";
 import BookTab2x from "../../images/tablet/Book-Tab-@2x.webp";
 
 export const NoData_Wrapper = styled.div`
-  width: 197px;
+  max-width: 197px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
-    width: 274px;
+    max-width: 289px;
     gap: 20px;
     margin-top: 28px;
   }
