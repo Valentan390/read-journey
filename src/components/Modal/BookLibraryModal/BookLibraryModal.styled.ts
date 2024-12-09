@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import GoodMob1x from "../../../images/mobile/Good_Mob_@1x.webp";
-import GoodMob2x from "../../../images/mobile/good_Mob_@2x.webp";
-import GoodTab1x from "../../../images/tablet/Good_Tab_@1x.webp";
-import GoodTab2x from "../../../images/tablet/Good_Tab_@2x.webp";
+import GoodMob1x from "../../../images/mobile/Good-Mob-@1x.webp";
+import GoodMob2x from "../../../images/mobile/Good-Mob-@2x.webp";
+import GoodTab1x from "../../../images/tablet/Good-Tab-@1x.webp";
+import GoodTab2x from "../../../images/tablet/Good-Tab-@2x.webp";
 
 export const BookLibraryWrapper = styled.div`
   width: 335px;
