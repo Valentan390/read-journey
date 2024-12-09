@@ -1,6 +1,14 @@
 import { CaseReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { booksRecommendedThunk, getAboutBookThunk } from "./operationsBooks";
-import { Book, BooksRecommendet, BooksState } from "../../helpers";
+import {
+  addBookRecommendThunk,
+  addNewBookUserThunk,
+  booksRecommendedThunk,
+  deleteUserBookThunk,
+  getAboutBookThunk,
+  getInfoAboutUserBookThunk,
+  getUserBooksThunk,
+} from "./operationsBooks";
+import { Book, BooksRecommendet, BooksState, BookUser } from "../../helpers";
 
 const initialState: BooksState = {
   books: [],
@@ -11,6 +19,20 @@ const initialState: BooksState = {
     imageUrl: "",
     totalPages: 0,
     recommend: true,
+    status: "",
+    owner: "",
+    progress: [],
+  },
+  booksUser: [],
+  bookUser: {
+    _id: "",
+    title: "",
+    author: "",
+    imageUrl: "",
+    totalPages: 1,
+    status: "",
+    owner: "",
+    progress: [],
   },
   totalPages: 1,
   page: 1,
@@ -74,7 +96,53 @@ export const booksSlice = createSlice({
           state.book = action.payload;
         }
       )
-      .addCase(getAboutBookThunk.rejected, handlerRejectedAction);
+      .addCase(getAboutBookThunk.rejected, handlerRejectedAction)
+
+      .addCase(addBookRecommendThunk.pending, handlerPendingAction)
+      .addCase(addBookRecommendThunk.fulfilled, (state, action) => {
+        state.isLoadingBooks = false;
+        state.booksUser = [...state.booksUser, action.payload];
+      })
+      .addCase(addBookRecommendThunk.rejected, handlerRejectedAction)
+
+      .addCase(addNewBookUserThunk.pending, handlerPendingAction)
+      .addCase(
+        addNewBookUserThunk.fulfilled,
+        (state, action: PayloadAction<BookUser>) => {
+          state.isLoadingBooks = false;
+          state.booksUser = [...state.booksUser, action.payload];
+        }
+      )
+      .addCase(addNewBookUserThunk.rejected, handlerRejectedAction)
+
+      .addCase(getUserBooksThunk.pending, handlerPendingAction)
+      .addCase(
+        getUserBooksThunk.fulfilled,
+        (state, action: PayloadAction<BookUser[]>) => {
+          state.isLoadingBooks = false;
+          state.booksUser = action.payload;
+        }
+      )
+      .addCase(getUserBooksThunk.rejected, handlerRejectedAction)
+
+      .addCase(deleteUserBookThunk.pending, handlerPendingAction)
+      .addCase(deleteUserBookThunk.fulfilled, (state, action) => {
+        state.isLoadingBooks = false;
+        state.booksUser = state.booksUser.filter(
+          ({ _id }) => _id !== action.payload.id
+        );
+      })
+      .addCase(deleteUserBookThunk.rejected, handlerRejectedAction)
+
+      .addCase(getInfoAboutUserBookThunk.pending, handlerPendingAction)
+      .addCase(
+        getInfoAboutUserBookThunk.fulfilled,
+        (state, action: PayloadAction<BookUser>) => {
+          state.isLoadingBooks = false;
+          state.bookUser = action.payload;
+        }
+      )
+      .addCase(getInfoAboutUserBookThunk.rejected, handlerRejectedAction);
   },
 });
 

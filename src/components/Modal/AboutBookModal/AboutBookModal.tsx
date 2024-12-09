@@ -4,7 +4,10 @@ import {
   useAppSelector,
   useHandlerModal,
 } from "../../../hooks";
-import { createBook } from "../../../redux/books/booksSelectors";
+import {
+  createBook,
+  selectBookUser,
+} from "../../../redux/books/booksSelectors";
 import {
   AboutBook_Button,
   AboutBook_H3,
@@ -15,28 +18,43 @@ import {
 } from "./AboutBookModal.styled";
 import CloseBtn from "../../Buttons/CloseBtn/CloseBtn";
 import { addBookRecommendThunk } from "../../../redux/books/operationsBooks";
+import { useNavigate } from "react-router-dom";
 
-const AboutBookModal: FC = () => {
+interface AboutBookModalProps {
+  aboutUserBook?: boolean;
+}
+
+const AboutBookModal: FC<AboutBookModalProps> = ({ aboutUserBook }) => {
   const { handlerModalClose } = useHandlerModal();
   const book = useAppSelector(createBook);
+  const bookUser = useAppSelector(selectBookUser);
+  const aboutBook = aboutUserBook ? bookUser : book;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!book) {
+    if (!aboutBook) {
       handlerModalClose();
     }
-  }, [book, handlerModalClose]);
+  }, [aboutBook, handlerModalClose]);
 
-  if (!book) {
-    return <div>Book not found</div>;
-  }
+  if (!aboutBook) return null;
 
-  const { totalPages, _id, title, author, imageUrl } = book;
+  const { totalPages, _id, title, author, imageUrl } = aboutBook;
 
   const handlerAddRecommendBook = async (id: string) => {
     await dispatch(addBookRecommendThunk(id)).unwrap();
     handlerModalClose();
   };
+
+  const navigateReading = () => {
+    navigate("/reading");
+    handlerModalClose();
+  };
+
+  const actionBook = aboutUserBook
+    ? navigateReading
+    : (_id: string) => handlerAddRecommendBook(_id);
 
   return (
     <AboutBook_Wrapper>
@@ -45,11 +63,8 @@ const AboutBookModal: FC = () => {
       <AboutBook_H3>{title}</AboutBook_H3>
       <AboutBook_H4>{author}</AboutBook_H4>
       <AboutBook_P>{totalPages} pages</AboutBook_P>
-      <AboutBook_Button
-        type="button"
-        onClick={() => handlerAddRecommendBook(_id)}
-      >
-        Add to library
+      <AboutBook_Button type="button" onClick={() => actionBook(_id)}>
+        {aboutUserBook ? "Start reading" : "Add to library"}
       </AboutBook_Button>
     </AboutBook_Wrapper>
   );

@@ -4,11 +4,13 @@ import { FiltersFormData } from "../../components/Filters/Filters";
 export interface FilterState {
   title: string | null;
   author: string | null;
+  status: string;
 }
 
 const initialState: FilterState = {
   title: null,
   author: null,
+  status: "",
 };
 
 export const filterSlice = createSlice({
@@ -24,8 +26,15 @@ export const filterSlice = createSlice({
       state.author = null;
       state.title = null;
     },
+    setStatusBookFilter: (
+      state,
+      action: PayloadAction<FilterState["status"]>
+    ) => {
+      state.status = action.payload;
+    },
   },
 });
 
-export const { setFilter, setResetFilter } = filterSlice.actions;
+export const { setFilter, setResetFilter, setStatusBookFilter } =
+  filterSlice.actions;
 export const filterReducer = filterSlice.reducer;

@@ -13,11 +13,16 @@ import {
   AddBook_Wrapper,
 } from "./AddBook.styled";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAppDispatch, useHandlerModal } from "../../hooks";
+import { addNewBookUserThunk } from "../../redux/books/operationsBooks";
+import { toast } from "react-toastify";
 
 const AddBook: FC = () => {
+  const { handlerModalOpen } = useHandlerModal();
+  const dispatch = useAppDispatch();
   const {
     register,
-    // reset,
+    reset,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<FormDataAddBooks>({
@@ -25,7 +30,17 @@ const AddBook: FC = () => {
     resolver: yupResolver(schemaAddBook),
   });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await dispatch(addNewBookUserThunk(data)).unwrap();
+      handlerModalOpen("BookLibrary");
+      reset();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(`${error.message}`);
+      }
+    }
+  });
 
   return (
     <AddBook_Wrapper>

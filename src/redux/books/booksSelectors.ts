@@ -14,7 +14,23 @@ export const selectIdBook = (state: RootState) => state.books.idBook;
 
 export const selectBook = (state: RootState) => state.books.book;
 
+export const selectStatusBook = (state: RootState) => state.filter.status;
+
+export const selectBooksUser = (state: RootState) => state.books.booksUser;
+
+export const selectBookUser = (state: RootState) => state.books.bookUser;
+
 export const createBook = createSelector(
   [selectBooksRecommendet, selectIdBook],
   (books, id) => books.find((book) => book._id === id)
+);
+
+export const createBookUser = createSelector(
+  [selectBooksUser, selectStatusBook],
+  (booksUser, status) => {
+    if (status === "") {
+      return booksUser;
+    }
+    return booksUser.filter((bookUser) => bookUser.status === status);
+  }
 );

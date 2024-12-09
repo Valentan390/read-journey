@@ -63,6 +63,9 @@ export interface Book {
   imageUrl: string;
   totalPages: number;
   recommend: boolean;
+  status: string;
+  owner: string;
+  progress: [];
 }
 
 export interface BooksRecommendet {
@@ -72,9 +75,22 @@ export interface BooksRecommendet {
   perPage: number;
 }
 
+export interface BookUser {
+  _id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  totalPages: number;
+  status: string;
+  owner: string;
+  progress: [];
+}
+
 export interface BooksState {
   books: Book[];
   book: Book;
+  bookUser: BookUser;
+  booksUser: BookUser[];
   totalPages: number;
   page: number;
   perPage: number;

@@ -20,7 +20,7 @@ export const MyLibraryBooks_div = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: start;
-  margin-bottom: 53px;
+  margin-bottom: 14px;
 `;
 
 export const MyLibraryBooks_h3 = styled.h3`

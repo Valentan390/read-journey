@@ -2,7 +2,10 @@ import { FC, useEffect } from "react";
 import MainComponent from "../../components/MainComponent/MainComponent";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { booksRecommendedThunk } from "../../redux/books/operationsBooks";
+import {
+  booksRecommendedThunk,
+  getUserBooksThunk,
+} from "../../redux/books/operationsBooks";
 import { selectPage } from "../../redux/books/booksSelectors";
 import MyLibraryBooks from "../../components/MyLibraryBooks/MyLibraryBooks";
 
@@ -12,6 +15,7 @@ const MyLibraryPage: FC = () => {
 
   useEffect(() => {
     dispatch(booksRecommendedThunk({ limit: 3, page }));
+    dispatch(getUserBooksThunk());
   }, [dispatch, page]);
 
   return (

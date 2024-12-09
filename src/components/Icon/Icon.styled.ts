@@ -12,6 +12,8 @@ const getColorFromTheme = ($color: string | undefined, theme: DefaultTheme) => {
       return theme.colors.black;
     case "white20":
       return theme.colors.transparentWhite20;
+    case "lightRed":
+      return theme.colors.lightRed;
     default:
       return "none";
   }

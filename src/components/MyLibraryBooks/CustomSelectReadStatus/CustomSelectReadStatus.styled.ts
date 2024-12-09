@@ -1,8 +1,8 @@
 import { StylesConfig } from "react-select";
-import { ICustomSelectReadStatus } from "./CustomSelectReadStatus";
+import { CategoriesBooks } from "./CustomSelectReadStatus";
 import { theme } from "../../../helpers";
 
-export const SelectCustom = (): StylesConfig<ICustomSelectReadStatus> => ({
+export const SelectCustom = (): StylesConfig<CategoriesBooks> => ({
   container: (provided) => ({
     ...provided,
     width: "120px",
