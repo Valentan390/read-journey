@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import StarMob1x from "../../images/mobile/star-mob-@1x.webp";
-import StarMob2x from "../../images/mobile/star-mob-@2x.webp";
+import StarMob1x from "../../images/mobile/Star-Mob-@1x.webp";
+import StarMob2x from "../../images/mobile/Star-Mob-@2x.webp";
 import StarTab1x from "../../images/tablet/Star-Tab-@1x.webp";
 import StarTab2x from "../../images/tablet/Star-Tab-@2x.webp";
 
