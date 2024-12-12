@@ -5,7 +5,10 @@ import {
   Book,
   BooksRecommendet,
   BookUser,
+  FinishReadingBook,
   FormDataAddBooks,
+  FormPageData,
+  Progress,
 } from "../../helpers";
 
 export interface RecommendedParams {
@@ -315,6 +318,110 @@ export const getInfoAboutUserBookThunk = createAsyncThunk<
             break;
           case 404:
             message = "Not found";
+            break;
+          case 500:
+            message = "Server error.";
+            break;
+          default:
+            message = "An unknown error occurred.";
+        }
+        toast.error(message);
+        return thunkAPI.rejectWithValue(message);
+      } else if (error.request) {
+        const message = "No response from the server. Please try again later.";
+        toast.error(message);
+        return thunkAPI.rejectWithValue(message);
+      } else {
+        const message = `Request error: ${error.message}`;
+        toast.error(message);
+        return thunkAPI.rejectWithValue(message);
+      }
+    } else if (error instanceof Error) {
+      toast.error(`${error.message}`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+    return thunkAPI.rejectWithValue("An unknown error occurred");
+  }
+});
+
+export const saveStartReadingBookThunk = createAsyncThunk<
+  Progress[],
+  FormPageData,
+  { rejectValue: string }
+>("books/reading/start", async (bookPage, thunkAPI) => {
+  try {
+    const { data } = await axios.post<BookUser>(
+      "books/reading/start",
+      bookPage
+    );
+    return data.progress;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const status = error.response.status;
+        let message = "An error occurred";
+        switch (status) {
+          case 400:
+            message = "Bad request (invalid request body)";
+            break;
+          case 404:
+            message = "Not found";
+            break;
+          case 409:
+            message =
+              "You haven't started reading this book | This book is already read | The finish page cann't be less than the start page";
+            break;
+          case 500:
+            message = "Server error.";
+            break;
+          default:
+            message = "An unknown error occurred.";
+        }
+        toast.error(message);
+        return thunkAPI.rejectWithValue(message);
+      } else if (error.request) {
+        const message = "No response from the server. Please try again later.";
+        toast.error(message);
+        return thunkAPI.rejectWithValue(message);
+      } else {
+        const message = `Request error: ${error.message}`;
+        toast.error(message);
+        return thunkAPI.rejectWithValue(message);
+      }
+    } else if (error instanceof Error) {
+      toast.error(`${error.message}`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+    return thunkAPI.rejectWithValue("An unknown error occurred");
+  }
+});
+
+export const saveFinishReadingBookThunk = createAsyncThunk<
+  FinishReadingBook,
+  FormPageData,
+  { rejectValue: string }
+>("books/reading/finish", async (bookPage, thunkAPI) => {
+  try {
+    const { data } = await axios.post<FinishReadingBook>(
+      "books/reading/finish",
+      bookPage
+    );
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        const status = error.response.status;
+        let message = "An error occurred";
+        switch (status) {
+          case 400:
+            message = "Bad request (invalid request body)";
+            break;
+          case 404:
+            message = "Not found";
+            break;
+          case 409:
+            message =
+              "You haven't started reading this book | This book is already read | The finish page cann't be less than the start page";
             break;
           case 500:
             message = "Server error.";

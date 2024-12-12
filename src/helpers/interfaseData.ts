@@ -75,6 +75,21 @@ export interface BooksRecommendet {
   perPage: number;
 }
 
+export interface Progress {
+  startPage: number;
+  startReading: string;
+  finishPage: number;
+  finishReading: string;
+  speed: number;
+  status: "inactive" | "active";
+}
+
+export interface TimeLeftToRead {
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
 export interface BookUser {
   _id: string;
   title: string;
@@ -83,14 +98,21 @@ export interface BookUser {
   totalPages: number;
   status: string;
   owner: string;
-  progress: [];
+  progress: Progress[];
+}
+
+export interface FinishReadingBook extends BookUser {
+  timeLeftToRead: TimeLeftToRead;
 }
 
 export interface BooksState {
   books: Book[];
   book: Book;
   bookUser: BookUser;
+  progressBookUser: Progress[];
+  timeLeftToRead: TimeLeftToRead;
   booksUser: BookUser[];
+  isReadingBook: boolean;
   totalPages: number;
   page: number;
   perPage: number;
@@ -115,4 +137,9 @@ export interface FormDataAddBooks {
   title: string;
   author: string;
   totalPages: number;
+}
+
+export interface FormPageData {
+  page: number;
+  id: string;
 }

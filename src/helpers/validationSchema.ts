@@ -49,3 +49,15 @@ export const schemaAddBook = yup.object({
     .positive("Total pages must be a positive number")
     .integer("Total pages must be an integer"),
 });
+
+export const schemaPageBook = yup.object({
+  page: yup
+    .number()
+    .transform((value, originalValue) =>
+      originalValue === "" ? undefined : value
+    )
+    .min(1, "Page must be at least 1")
+    .integer("Page must be an integer")
+    .required("Page is required"),
+  id: yup.string().required("Book ID is required"),
+});

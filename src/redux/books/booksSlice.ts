@@ -7,8 +7,17 @@ import {
   getAboutBookThunk,
   getInfoAboutUserBookThunk,
   getUserBooksThunk,
+  saveFinishReadingBookThunk,
+  saveStartReadingBookThunk,
 } from "./operationsBooks";
-import { Book, BooksRecommendet, BooksState, BookUser } from "../../helpers";
+import {
+  Book,
+  BooksRecommendet,
+  BooksState,
+  BookUser,
+  FinishReadingBook,
+  Progress,
+} from "../../helpers";
 
 const initialState: BooksState = {
   books: [],
@@ -34,6 +43,9 @@ const initialState: BooksState = {
     owner: "",
     progress: [],
   },
+  progressBookUser: [],
+  timeLeftToRead: { hours: 1, minutes: 1, seconds: 1 },
+  isReadingBook: false,
   totalPages: 1,
   page: 1,
   perPage: 0,
@@ -142,7 +154,32 @@ export const booksSlice = createSlice({
           state.bookUser = action.payload;
         }
       )
-      .addCase(getInfoAboutUserBookThunk.rejected, handlerRejectedAction);
+      .addCase(getInfoAboutUserBookThunk.rejected, handlerRejectedAction)
+
+      .addCase(saveStartReadingBookThunk.pending, handlerPendingAction)
+      .addCase(
+        saveStartReadingBookThunk.fulfilled,
+        (state, action: PayloadAction<Progress[]>) => {
+          state.isLoadingBooks = false;
+          state.isReadingBook = true;
+          state.progressBookUser = action.payload;
+          state.bookUser.progress = action.payload;
+        }
+      )
+      .addCase(saveStartReadingBookThunk.rejected, handlerRejectedAction)
+
+      .addCase(saveFinishReadingBookThunk.pending, handlerPendingAction)
+      .addCase(
+        saveFinishReadingBookThunk.fulfilled,
+        (state, action: PayloadAction<FinishReadingBook>) => {
+          state.isLoadingBooks = false;
+          state.isReadingBook = false;
+          state.timeLeftToRead = action.payload.timeLeftToRead;
+          state.progressBookUser = action.payload.progress;
+          state.bookUser.progress = action.payload.progress;
+        }
+      )
+      .addCase(saveFinishReadingBookThunk.rejected, handlerRejectedAction);
   },
 });
 

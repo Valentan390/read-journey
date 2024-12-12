@@ -68,5 +68,15 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M18.667 14.667v8"></path>
 </symbol>
 
+<symbol id="icon-block-stop" viewBox="0 0 32 32">
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.6" d="M31.2 16c0 8.395-6.805 15.2-15.2 15.2s-15.2-6.805-15.2-15.2c0-8.395 6.805-15.2 15.2-15.2s15.2 6.805 15.2 15.2z"></path>
+<path d="M12 10.4h7.2c1.325 0 2.4 1.075 2.4 2.4v7.2c0 1.325-1.075 2.4-2.4 2.4h-7.2c-1.325 0-2.4-1.075-2.4-2.4v-7.2c0-1.325 1.075-2.4 2.4-2.4z"></path>
+</symbol>
+
+<symbol id="icon-block-start" viewBox="0 0 32 32">
+<path d="M28 16c0 6.627-5.373 12-12 12s-12-5.373-12-12c0-6.627 5.373-12 12-12s12 5.373 12 12z"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.6" d="M31.2 16c0 8.395-6.805 15.2-15.2 15.2s-15.2-6.805-15.2-15.2c0-8.395 6.805-15.2 15.2-15.2s15.2 6.805 15.2 15.2z"></path>
+</symbol>
+
 </defs>
 </svg>

@@ -9,4 +9,9 @@
   margin-right: auto;
   position: relative;
   background-color: inherit;
+  background-color: transparent;
+
+  border-radius: 50%;
+
+  background-image: url();
 }
