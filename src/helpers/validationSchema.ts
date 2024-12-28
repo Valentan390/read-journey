@@ -53,8 +53,9 @@ export const schemaAddBook = yup.object({
 export const schemaPageBook = yup.object({
   page: yup
     .number()
+    .typeError("Page must be a valid number")
     .transform((value, originalValue) =>
-      originalValue === "" ? undefined : value
+      /^\d+$/.test(originalValue) ? Number(originalValue) : undefined
     )
     .min(1, "Page must be at least 1")
     .integer("Page must be an integer")

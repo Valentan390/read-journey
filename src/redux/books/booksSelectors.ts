@@ -23,6 +23,12 @@ export const selectBookUser = (state: RootState) => state.books.bookUser;
 export const selectIsReadingBook = (state: RootState) =>
   state.books.isReadingBook;
 
+export const selectProgressBookUser = (state: RootState) =>
+  state.books.progressBookUser;
+
+export const selectTimeLeftToRead = (state: RootState) =>
+  state.books.timeLeftToRead;
+
 export const createBook = createSelector(
   [selectBooksRecommendet, selectIdBook],
   (books, id) => books.find((book) => book._id === id)

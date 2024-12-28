@@ -4,6 +4,8 @@ const getColorFromTheme = ($color: string | undefined, theme: DefaultTheme) => {
   switch ($color) {
     case "white":
       return theme.colors.white;
+    case "gray":
+      return theme.colors.gray;
     case "green":
       return theme.colors.green;
     case "red":
